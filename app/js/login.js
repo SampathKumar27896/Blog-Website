@@ -16,9 +16,8 @@
                     url: $('#base_url').val()+"api/login_api.php",
                     data:"&name="+name+"&image_url="+image_url+"&email="+email,
                     type: 'post',
-                    success: function(result)
-                    {
-                        
+                    success: function(result) {
+                        alert(result);
                     }
                 });
     
