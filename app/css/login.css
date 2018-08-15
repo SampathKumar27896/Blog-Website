@@ -1,0 +1,14 @@
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
+#welcome_greeting{
+    font-size:48px;
+}
+
+#sign_in_btn{
+    position: absolute;
+    top:250px;
+    left:600px;
+
+}
