@@ -19,6 +19,10 @@
             return $this->database->result();
         
         }
+
+        public function check_user_exists(){
+            
+        }
     }
 
 
