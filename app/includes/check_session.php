@@ -1,13 +1,8 @@
 <?php
-
     include('includes/constant.php');
-    if(!isset($_SESSION['user_name'])){
-        session_start();
-    }
-    else{
+    if(!isset($_SESSION['name'])){
         header("Location:".$base_url."login.php");
     }
-
 
 
 ?>

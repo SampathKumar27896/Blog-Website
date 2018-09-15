@@ -10,6 +10,8 @@
         private $values = array();
         private $query;
         private $query_execution;
+        public $select_query = false;
+        
         public function __construct(){
 
         }
@@ -56,6 +58,51 @@
             $this->query.="VALUES(".implode(',',$this->values).");";
             
             return $this->query;
+        }
+
+        public function get_select_query($params,$table,$condition_set = ""){
+            $this->select_query = true;
+            if($condition_set == '*')
+                $this->query = "SELECT * FROM ".$table;
+            else
+                $this->query = "SELECT ".implode(',',$params)." FROM ".$table;
+
+            if($condition_set != "*" && $condition_set != "" ){
+                $this->query.= " WHERE ";
+                foreach ($condition_set as $key => $value) {
+                    $this->query.= $key."="."'".$value."'"." AND ";
+                }
+                $this->query = substr($this->query, 0, -4);
+                
+            }
+            $this->query.=";";
+            return $this->query;
+
+        }
+
+        public function is_session(){
+
+                return $_SESSION['is_session'];
+        }
+
+
+        public function set_session($data){
+            
+            $_SESSION['id'] = $data[0]['id'];
+            $_SESSION['name'] = $data[0]['name'];
+            $_SESSION['email'] = $data[0]['email'];
+            $_SESSION['image'] = $data[0]['image_url'];
+            
+            $_SESSION['is_session'] = true;
+            
+            
+        }
+
+        public function get_details(){
+            if($_SESSION['is_session'])
+                return array('id'=>$_SESSION['id'],'name'=>$_SESSION['name'],'email'=>$_SESSION['email'],'image'=>$_SESSION['image']);
+            else
+                return null;
         }
     }
 

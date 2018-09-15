@@ -1,6 +1,11 @@
 <?php
+    
     include('includes/constant.php');
-    echo base_path;
+    if(isset($_SESSION['name'])){
+        header("Location:".$base_url."index.php");
+       
+    }
+    
 
 ?>
 <!DOCTYPE html>
